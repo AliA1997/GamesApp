@@ -19,6 +19,7 @@ using Games.Data.Repositories.Games;
 using Games.Data.Repositories.Games.Impl;
 using Games.Services.Services.Games;
 using Games.Services.Services.Games.Impl;
+using Games.Data.Seeds;
 
 namespace Games.Web
 {
@@ -50,12 +51,17 @@ namespace Games.Web
             //Use the AddScoped to add a signature and it's correpsonding class.
             services.AddScoped<IGamesRepository, GamesRepository>();
             services.AddScoped<IGamesService, GamesService>();
+            //After you define your cors have your IServicePRovider instance use COrs.
+            
+            services.AddCors();
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, GamesContext context)
         {
+            EnsureGamesData.Seed(context);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -66,7 +72,16 @@ namespace Games.Web
             }
 
             app.UseHttpsRedirection();
+            
+            app.UseCors(builder =>
+            {
+                //Have your CorsPolicyBuilder builder returned when your IApplicationBuilder instance uses cors have it use AnyHeader, AnyMethod, AnyOrigin, and AnyCredentials.
+                builder.AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowAnyOrigin();
+            });
             app.UseMvc();
+            
         }
     }
 }

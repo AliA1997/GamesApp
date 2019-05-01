@@ -1,0 +1,9 @@
+.container {
+    background-color: white;
+    color: green;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.home-div {
+    width: 100%;
+    text-align: center;
+}

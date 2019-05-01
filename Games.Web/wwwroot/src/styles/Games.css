@@ -1,0 +1,42 @@
+/*Each game item will contain a border that will be white */
+/*With a box shadow which will add color to the border. */ 
+/* Then give each item a background color of lightgray*/
+.game-item {
+    border: 1px solid #ffffff;
+    box-shadow: 1 1 1 black;
+    background-color: lightgrey;
+}
+
+.game-container {
+    margin-left: auto;
+    margin-right: auto;
+}
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 400px;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+}
+
+.submit-button {
+    background-color: green;
+    color: white;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.submit-button:hover {
+    background-color: white;
+    color: green;
+}
+
+input {
+    color: green;
+    box-shadow: 2px 2px 2px green;
+}
